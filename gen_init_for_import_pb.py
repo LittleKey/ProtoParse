@@ -68,10 +68,7 @@ def gen_init_file(info):
             #write file footer
             fp.write(FILE_FOOTER)
 
-if __name__ == '__main__':
-    p = subprocess.Popen(CMD % sys.argv[1], shell=True, stdout=subprocess.PIPE)
-    p.wait()
-    pb_info = format_pb_info(p.stdout.read())
+def pb_info2gen_info(pb_info):
     gen_info = {}
     for filename, classname in pb_info:
         path = os.path.dirname(filename)
@@ -83,5 +80,14 @@ if __name__ == '__main__':
         import_info[module] = class_list
         gen_info[path] = import_info
 
-    gen_init_file(gen_info)
+    return gen_info
+
+def main():
+    p = subprocess.Popen(CMD % sys.argv[1], shell=True, stdout=subprocess.PIPE)
+    p.wait()
+    pb_info = format_pb_info(p.stdout.read())
+    gen_init_file(pb_info2gen_info(pb_info))
+
+if __name__ == '__main__':
+    main()
 
