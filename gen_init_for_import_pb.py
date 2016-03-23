@@ -20,7 +20,7 @@ pb_info data structure
     [(filename, classname), ...]
 """
 
-CMD = r"""grep -e "\'tv\.yuanqi\.\(business\|model\)\(\.[a-z]\+\)\?\.[A-Z]\{1,\}[A-Za-z]\{1,\}\'" -r %s"""
+CMD = r"""grep -e "'\(rpc\|vitality\|\|business\|model\)\(\.[a-z]\+\)\?\.[A-Z]\{1,\}[A-Za-z]\{1,\}'" -r %s"""
 
 FILE_HEADER = """
 #!/usr/bin/env python
